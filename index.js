@@ -4,7 +4,7 @@
 // При натисканні на категорію в середній блок виводиться список товарів цієї категорії.
 // Клік на товар - інформацію про товар у правому блоці.
 // В інформації товару - кнопка “купити”.
-// При натисканні на “купити” з'являється повідомлення, що товар куплений і повернення у вихідний стан програми ( коли відображається лише 
+// При натисканні на “купити” з'являється повідомлення, що товар куплений і повернення у вихідний стан програми ( коли відображається лише
 //список категорій).
 
 
@@ -31,21 +31,22 @@ const span = document.getElementById('span');
 
 const categoryAll = [laptops, mobile, household, tools];
 
-const arr = [{'name': 'Acer Aspire', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'Asus S500MC-5114000370', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': '28" Samsung Odyssey G7', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'Apple iPhone 13', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'Samsung S22 ULTRA', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'LG 45" Ultra', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'Refridgerator', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'Wosher', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'Mixer', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'Drill', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'Grinder tool', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
-{'name': 'Saw', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}]
+const arr = [{'name': 'Acer Aspire', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'Asus S500MC-5114000370', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': '28" Samsung Odyssey G7', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'Apple iPhone 13', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'Samsung S22 ULTRA', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'LG 45" Ultra', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'Refridgerator', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'Wosher', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'Mixer', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'Drill', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'Grinder tool', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'},
+    {'name': 'Saw', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}]
 
 function addDivInfo(event){
     event.stopPropagation();
+    items.style.display = 'none';
     const nameLink = event.target.innerText;
     switch(nameLink){
         case 'Laptops & Computers':
@@ -70,7 +71,7 @@ function showAll(el){
     categoryAll.filter((items) => items !== el).forEach((items) =>{
         items.style.display = "none";
     })
-    
+
 
 }
 
