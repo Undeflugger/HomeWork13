@@ -1,3 +1,14 @@
+// Дано 3 блоки
+
+// В лівій частині сторінки - перелік категорій.
+// При натисканні на категорію в середній блок виводиться список товарів цієї категорії.
+// Клік на товар - інформацію про товар у правому блоці.
+// В інформації товару - кнопка “купити”.
+// При натисканні на “купити” з'являється повідомлення, що товар куплений і повернення у вихідний стан програми ( коли відображається лише 
+//список категорій).
+
+
+
 const category = document.getElementsByClassName('category')[0];
 category.addEventListener('click', addDivInfo);
 const catalog = document.getElementsByClassName('catalog')[0];
@@ -18,6 +29,8 @@ const h1 = document.getElementById('h3');
 const p = document.getElementById('p');
 const span = document.getElementById('span');
 
+const categoryAll = [laptops, mobile, household, tools];
+
 const arr = [{'name': 'Acer Aspire', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
 {'name': 'Asus S500MC-5114000370', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
 {'name': '28" Samsung Odyssey G7', 'description': 'Screen 15.6" IPS (1920x1080) Full HD', 'price': '1000$'}, 
@@ -34,66 +47,38 @@ const arr = [{'name': 'Acer Aspire', 'description': 'Screen 15.6" IPS (1920x1080
 function addDivInfo(event){
     event.stopPropagation();
     const nameLink = event.target.innerText;
-    if(nameLink === 'Laptops & Computers'){
-        displayNone(mobile, household, tools);
-        items.style.display = "none";
-        laptops.style.display = "block";
-    }else if(nameLink === 'Mobile & TV'){
-        displayNone(laptops, household, tools);
-        items.style.display = "none";
-        mobile.style.display = "block";      
-    }else if(nameLink === 'Household appliances'){
-        displayNone(laptops, mobile, tools);
-        items.style.display = "none";
-        household.style.display = "block";      
-    }else if(nameLink === 'Tools'){
-        displayNone(laptops, mobile, household);
-        items.style.display = "none";
-        tools.style.display = "block";      
+    switch(nameLink){
+        case 'Laptops & Computers':
+            showAll(laptops);
+            break;
+        case 'Mobile & TV':
+            showAll(mobile);
+            break;
+        case  'Household appliances':
+            showAll(household);
+            break;
+        case 'Tools':
+            showAll(tools);
+            break;
     }
+}
+
+
+
+function showAll(el){
+    el.style.display = "block";
+    categoryAll.filter((items) => items !== el).forEach((items) =>{
+        items.style.display = "none";
+    })
+    
+
 }
 
 function addDivCatalog(event){
     event.stopPropagation();
     const nameLink = event.target.innerText;
-    switch(nameLink){
-        case 'Acer Aspire':
-            pushText(0);
-            break;
-        case 'Asus S500MC-5114000370':
-            pushText(1);
-            break;
-        case '28" Samsung Odyssey G7':
-            pushText(2);
-            break;
-        case 'Apple iPhone 13':
-            pushText(3);
-            break;
-        case 'Samsung S22 ULTRA':
-            pushText(4);
-            break;
-        case 'LG 45" Ultra':
-            pushText(5);
-            break;
-        case 'Refridgerator':
-            pushText(6);
-            break;
-        case 'Wosher':
-            pushText(7);
-            break;
-        case 'Mixer':
-            pushText(8);
-            break;
-        case 'Drill':
-            pushText(9);
-            break;
-        case 'Grinder tool':
-            pushText(10);
-            break;
-        case 'Saw':
-            pushText(11);
-            break;
-    }
+    const index = arr.findIndex(el => el.name === nameLink);
+    pushText(index);
     items.style.display = "block";
 }
 
@@ -104,23 +89,22 @@ function pushText(el){
 }
 
 
-function displayNone(el1, el2, el3 = el1, el4 = el1){
-    el1.style.display = "none";
-    el2.style.display = "none";
-    el3.style.display = "none";
-    el4.style.display = "none";
+function displayNone(el){
+    el.forEach(el => {
+        el.style.display = "none";
+    })
 }
 
 function buyItem(event){
     event.stopPropagation();
     event.preventDefault();
     items.style.display = "none";
-    displayNone(laptops, mobile, household, tools);
+    displayNone(categoryAll);
     alert('Bought!');
 
 }
 
 function clear(event){
     items.style.display = "none";
-    displayNone(laptops, mobile, household, tools);
+    displayNone(categoryAll);
 }
